@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\newtheorem{theorem}{Theorem}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\title{A Tiny Note on Beautiful Typesetting}
+\author{Ada Lovelace}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{abstract}
+This paper introduces Vitamins, a clean language for writing beautiful documents.
+\end{abstract}
+\section{Motivation}
+LaTeX is powerful, but its surface language is noisy.
+\begin{quote}
+LaTeX: \texttt{\textbackslash{}textbf\{important\}}\\
+Vitamins: \textbf{important}
+\end{quote}
+\section{A theorem}
+\begin{theorem}[Euler]
+For every real number $x$,
+\[
+\exp\left(i \cdot \pi\right) + 1 = 0
+\]
+\end{theorem}
+\begin{proof}
+Use the complex exponential definition.
+\[
+\exp\left(i \cdot x\right) = \cos\left(x\right) + i \cdot \sin\left(x\right)
+\]
+Set $x = \pi$.
+\end{proof}
+\section{Structure}
+\begin{itemize}
+\item Readable
+\item Composable
+\item Compiles to LaTeX
+\end{itemize}
+\begin{enumerate}
+\item Write Vitamins
+\item Compile to LaTeX
+\item Ship the PDF
+\end{enumerate}
+\section{Tables and figures}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{diagram.pdf}
+\caption{A helpful diagram.}
+\label{fig:helpful_diagram}
+\end{figure}
+\begin{table}
+\centering
+\begin{tabular}{lcr}
+Name & Score & Rank \\
+\hline
+Ada & 98 & 1 \\
+Grace & 95 & 2 \\
+\end{tabular}
+\caption{Results}
+\end{table}
+\section{Mathematics}
+Inline math works naturally: $x^2 + y^2 = z^2$.
+Custom macros compile to ordinary LaTeX: $\norm{v} = \sqrt{v \cdot v}$.
+\begin{equation}
+\label{gaussian}
+\int_{-\infty}^{\infty} \exp\left(-x^2\right) \, dx = \sqrt{\pi}
+\end{equation}
+Equation \ref{gaussian} is the classic Gaussian integral.
+\[
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \pi^2 / 6
+\]
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

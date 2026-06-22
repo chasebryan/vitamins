@@ -1,0 +1,87 @@
+paper "A Tiny Note on Beautiful Typesetting" do
+  author "Ada Lovelace"
+  date today
+  use math
+  use theorem
+  use graphics
+  use bibliography
+  define norm(x) "\\left\\lVert #1 \\right\\rVert"
+
+  abstract do
+    p "This paper introduces Vitamins, a clean language for writing beautiful documents."
+  end
+
+  section "Motivation" do
+    p "LaTeX is powerful, but its surface language is noisy."
+    compare do
+      latex "\\textbf{important}"
+      vitamins bold "important"
+    end
+  end
+
+  section "A theorem" do
+    theorem "Euler" do
+      p "For every real number", x, ","
+      equation do
+        exp(i * pi) + 1 == 0
+      end
+    end
+
+    proof do
+      p "Use the complex exponential definition."
+      equation do
+        exp(i * x) == cos(x) + i * sin(x)
+      end
+      p "Set", x == pi, "."
+    end
+  end
+
+  section "Structure" do
+    items do
+      item "Readable"
+      item "Composable"
+      item "Compiles to LaTeX"
+    end
+
+    steps do
+      item "Write Vitamins"
+      item "Compile to LaTeX"
+      item "Ship the PDF"
+    end
+  end
+
+  section "Tables and figures" do
+    figure path: "diagram.pdf", width: 0.8.page do
+      caption "A helpful diagram."
+      label :helpful_diagram
+    end
+
+    table do
+      columns :left, :center, :right
+      row "Name", "Score", "Rank"
+      rule
+      row "Ada", 98, 1
+      row "Grace", 95, 2
+      caption "Results"
+    end
+  end
+
+  section "Mathematics" do
+    p "Inline math works naturally:", math { x^2 + y^2 == z^2 }, "."
+    p "Custom macros compile to ordinary LaTeX:", math { norm(v) == sqrt(v * v) }, "."
+    equation label: :gaussian do
+      integral x: -infinity..infinity do
+        exp(-x^2)
+      end == sqrt(pi)
+    end
+    p "Equation", ref(:gaussian), "is the classic Gaussian integral."
+
+    equation do
+      sum n: 1..infinity do
+        frac(1, n^2)
+      end == pi^2 / 6
+    end
+  end
+
+  bibliography "references.bib"
+end
